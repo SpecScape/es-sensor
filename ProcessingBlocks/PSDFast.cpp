@@ -64,7 +64,7 @@ void PSDFast::run() {
   std::vector<float> w_func;
   // Windowing
   float W = 0;
-  for (int i = 0; i < signal_len / 2; i++) {
+  for (unsigned int i = 0; i < signal_len / 2; i++) {
     auto w_i = hamming(i + 1, signal_len / 2);
     w_func.push_back(w_i);
     W += std::pow(w_i,2);

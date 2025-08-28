@@ -106,8 +106,6 @@ std::vector<float> buildFIRBase(float fc, float fs, unsigned int taps, std::func
 std::vector<float> buildFIRFilter(float fc, float tw, float fs, float rip,
 							      std::function<float(float)> gainFunc,
 								  float step){
-	unsigned int len;
-
 	/* Build kaiser window that meets the specifications */
 	auto window = buildKaiser(rip, tw, fs);
 	auto filter = buildFIRBase(fc, fs, window.size(), gainFunc, step);

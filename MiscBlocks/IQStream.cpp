@@ -37,7 +37,7 @@ void IQStream::run() {
 
   unsigned int num_decoders = 6;
   int id_decoders[num_decoders] = {1, 2, 3, 4, 5, 6};
-  char *name_decoders[num_decoders] = {"fm_radio", "am_radio",
+  const char *name_decoders[num_decoders] = {"fm_radio", "am_radio",
                                        "dump1090", "rtl_ais",
                                        "acarsdec", "LTECELL_scanner"};
   bool rational_dec[num_decoders] = {true, true, true, true, true, true};

@@ -31,6 +31,8 @@ rtlsdrDriver::rtlsdrDriver() {
   mQueueOut = new ReaderWriterQueue<SpectrumSegment *>(100);
   mQueueOut2 = new ReaderWriterQueue<SpectrumSegment *>(100);
   mConverterEnabled = false;
+  memset(&mConverterDriver, 0, sizeof(mConverterDriver));
+
 }
 
 int rtlsdrDriver::open(std::string device) {

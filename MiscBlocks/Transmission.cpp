@@ -58,8 +58,6 @@ void Transmission::checkConnection() {
 
   if (tls_con == NULL && mConnection == ConnectionType::TLS) {
 
-    tls_con = (TLS_Connection *)malloc(sizeof(TLS_Connection *));
-
     tls_init_p(&tls_con, NULL, TLS_client_method(), mCACert.c_str(),
                mCert.c_str(), mKey.c_str(), mHost.c_str(), atoi(mPort.c_str()));
 
@@ -69,12 +67,12 @@ void Transmission::checkConnection() {
 
   } else if (tcp_con == NULL && mConnection == ConnectionType::TCP) {
 
-    tcp_con = (TCP_Connection *)malloc(sizeof(TCP_Connection *));
     tcp_init_p(&tcp_con, mHost.c_str(), atoi(mPort.c_str()));
 
     while (tcp_connect(tcp_con) < 0) {
       sleep(1);
     }
+
   }
 }
 
@@ -125,7 +123,13 @@ void Transmission::run() {
           packet_size = 1 * sizeof(uint32_t) + payload_size;
         }
 
-        buf = (uint32_t *)realloc(buf, packet_size);
+        // realloc might return NULL and not free the old buf if out of memory
+        void *new_buf = realloc(buf, packet_size);
+        if (new_buf)
+            buf = (uint32_t *)new_buf;
+        else
+            break;
+
         prev_data_size = data_size;
       }
 
@@ -153,11 +157,13 @@ void Transmission::run() {
           std::cerr << "[ERROR] Transmission thread could not write properly in the socket!" << std::endl;
           mRunning = false;
           delete (segment);
+          segment = NULL;
           break;
       }
 
       // Free memory of the segment
       delete (segment);
+      segment = NULL;
 
     } else
       usleep(1);
@@ -168,14 +174,21 @@ void Transmission::run() {
     if (tls_con!=NULL) {
         tls_disconnect(tls_con);
         tls_release(tls_con);
+        tls_con = NULL;
     }
   } else {
     if (tcp_con!=NULL) {
         tcp_disconnect(tcp_con);
         tcp_release(tcp_con);
+        tcp_con = NULL;
     }
   }
 
+  if (segment)
+      delete segment;
+
+  if (buf)
+      free(buf);
 }
 
 int Transmission::stop() {

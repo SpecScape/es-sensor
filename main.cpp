@@ -200,7 +200,7 @@ void parse_args(int argc, char *argv[]) {
       ElectrosenseContext::getInstance()->setClkOff(atoi(optarg));
       break;
     case 'z':
-      ElectrosenseContext::getInstance()->setPipeline(strdup(optarg));
+      ElectrosenseContext::getInstance()->setPipeline(optarg);
       break;
     case 'k':
       ElectrosenseContext::getInstance()->setClkCorrPerior(atoi(optarg));
@@ -214,7 +214,7 @@ void parse_args(int argc, char *argv[]) {
       ElectrosenseContext::getInstance()->setGain(atof(optarg));
       break;
     case 'y':
-      ElectrosenseContext::getInstance()->setHoppingStrategy(strdup(optarg));
+      ElectrosenseContext::getInstance()->setHoppingStrategy(optarg);
       break;
     case 's':
       ElectrosenseContext::getInstance()->setSamplingRate(atol(optarg));
@@ -241,22 +241,22 @@ void parse_args(int argc, char *argv[]) {
       ElectrosenseContext::getInstance()->setMinTimeRes(atol(optarg));
       break;
     case 'w':
-      ElectrosenseContext::getInstance()->setWindowing(strdup(optarg));
+      ElectrosenseContext::getInstance()->setWindowing(optarg);
       break;
     case 'l':
       ElectrosenseContext::getInstance()->setComprLevel(atol(optarg));
       break;
     case 'm':
-      ElectrosenseContext::getInstance()->setTcpHosts(strdup(optarg));
+      ElectrosenseContext::getInstance()->setTcpHosts(optarg);
       break;
     case 'n':
-      ElectrosenseContext::getInstance()->setTlsHosts(strdup(optarg));
+      ElectrosenseContext::getInstance()->setTlsHosts(optarg);
       break;
     case 'p':
       ElectrosenseContext::getInstance()->setFifoPriority(1);
       break;
     case 'u':
-      ElectrosenseContext::getInstance()->setOutputFileName(strdup(optarg));
+      ElectrosenseContext::getInstance()->setOutputFileName(optarg);
       break;
     case 'x':
       ElectrosenseContext::getInstance()->setStartTimeSampling(atol(optarg));
