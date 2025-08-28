@@ -60,7 +60,7 @@ void Transmission::checkConnection() {
 
     tls_con = (TLS_Connection *)malloc(sizeof(TLS_Connection *));
 
-    tls_init_p(&tls_con, NULL, TLSv1_1_client_method(), mCACert.c_str(),
+    tls_init_p(&tls_con, NULL, TLS_client_method(), mCACert.c_str(),
                mCert.c_str(), mKey.c_str(), mHost.c_str(), atoi(mPort.c_str()));
 
     while (tls_connect(tls_con) < 0) {

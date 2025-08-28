@@ -24,6 +24,7 @@
 #ifndef ELECTROSENSECONTEXT_H_
 #define ELECTROSENSECONTEXT_H_
 
+#include <cstdint>
 #include <iostream>
 #include <string>
 #include <vector>

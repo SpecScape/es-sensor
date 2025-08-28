@@ -23,6 +23,8 @@
 #ifndef SRC_SENSOR_SPECTRUMSEGMENT_H_
 #define SRC_SENSOR_SPECTRUMSEGMENT_H_
 
+#include <cstdint>
+
 #include <complex.h>
 #include <string.h>
 #include <time.h>
