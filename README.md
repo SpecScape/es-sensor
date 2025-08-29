@@ -10,7 +10,7 @@ If you are looking for an image ready to run on a RaspberryPi go [here](https://
 * Install the following packages
 
 ```
-$  sudo apt install git-core cmake librtlsdr-dev librtlsdr0 libliquid1d libliquid-dev liblzma-dev liblzma5 libusb-1.0-0-dev fftw-dev libssl-dev libjson-c3 libjson-c-dev zlib1g-dev zlib1g
+$ sudo apt install git cmake librtlsdr-dev libssl-dev libliquid-dev libjson-c-dev zlib1g-dev libavro-dev
 ```
 
 * More details to Apache Avro are available at http://avro.apache.org. Releases may be downloaded from Apache mirror at http://www.apache.org/dyn/closer.cgi/avro/.

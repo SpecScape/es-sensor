@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.7)
 project(electrosense-sensor)
 
 # Set version
-SET (VERSION "1.3.6")
+SET (VERSION "1.4.0")
 SET (DEBVERSION "1")
 add_definitions( -DAPP_VERSION="${VERSION}-${DEBVERSION}")
 
@@ -70,6 +70,7 @@ target_link_libraries(es_sensor
 INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/es_sensor DESTINATION /usr/share/electrosense/bin/)
 INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/schemas/rtl-spec.avsc DESTINATION /usr/share/electrosense/schemas/)
 INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/schemas/iq-spec.avsc DESTINATION /usr/share/electrosense/schemas/)
+INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/rtl-sdr.rules DESTINATION /etc/udev/rules.d/)
 
 
 # Determine current architecture
